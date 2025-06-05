@@ -21,6 +21,7 @@ module.exports = {
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
+    "plugin:storybook/recommended"
   ],
   rules: {
     // 타입스크립트

@@ -1,8 +1,9 @@
 export const spacing = {
-  0: "0px",
-  1: "4px",
-  2: "8px",
-  3: "12px",
-  4: "16px",
-  5: "20px",
+  none: "0",
+  xs: "0.25rem", // 4px
+  sm: "0.5rem", // 8px
+  md: "1rem", // 16px
+  lg: "1.5rem", // 24px
+  xl: "2rem", // 32px
+  xxl: "3rem", // 48px
 };
