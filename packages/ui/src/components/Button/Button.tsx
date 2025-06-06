@@ -1,4 +1,4 @@
-import { buttonStyle } from "./Button.styles";
+import { StyledButton } from "./Button.style";
 import { ButtonProps } from "./Button.types";
 
 export const Button = ({
@@ -8,8 +8,8 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <button css={buttonStyle(variant, size)} {...props}>
+    <StyledButton variant={variant} size={size}>
       {children}
-    </button>
+    </StyledButton>
   );
 };
