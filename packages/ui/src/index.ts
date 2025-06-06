@@ -10,3 +10,4 @@ export * from "./components/Heading";
 export * from "./components/Flex";
 export * from "./components/Grid";
 export * from "./components/Badge";
+export * from "./components/Chip";
