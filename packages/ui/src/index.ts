@@ -5,3 +5,4 @@ export * from "./tokens/typography";
 export * from "./components/Button";
 export * from "./components/Card";
 export * from "./components/Avatar";
+export * from "./components/Text";
