@@ -29,6 +29,9 @@ jobs:
       - name: Build UI Package
         run: yarn workspace @nba-design/ui build
 
+      - name: Debug UI Build
+        run: ls -al packages/ui/dist
+
       - name: Build NBA Web
         run: yarn workspace nba-web build
 

@@ -3,10 +3,15 @@
   "version": "0.1.0",
   "main": "dist/index.js",
   "exports": {
-    ".": "./dist/index.js",
-    "./theme": "./dist/theme.js"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./theme": {
+      "import": "./dist/theme.js",
+      "types": "./dist/theme.d.ts"
+    }
   },
-  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },

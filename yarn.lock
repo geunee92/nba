@@ -7328,6 +7328,7 @@ __metadata:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
     "@eslint/js": "npm:^9.25.0"
+    "@nba-design/ui": "workspace:^"
     "@storybook/addon-a11y": "npm:^9.0.4"
     "@storybook/addon-docs": "npm:^9.0.4"
     "@storybook/addon-onboarding": "npm:^9.0.4"
