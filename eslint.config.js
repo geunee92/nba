@@ -10,6 +10,7 @@ export default tseslint.config(
   // ✅ 1. 공통적으로 무시할 파일/디렉토리 설정
   {
     ignores: [
+      ".yarn/**",
       "dist", // 번들 결과물 무시
       "node_modules", // 외부 모듈 무시
       "packages/*/dist/**", // 모든 패키지 내 dist 무시
