@@ -5969,9 +5969,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"nba@workspace:services/nba":
+"nba-web@workspace:services/nba":
   version: 0.0.0-use.local
-  resolution: "nba@workspace:services/nba"
+  resolution: "nba-web@workspace:services/nba"
   dependencies:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
