@@ -30,7 +30,7 @@ jobs:
         run: yarn tsc --noEmit
 
       - name: Build NBA Web
-        run: yarn workspace @nba-web build
+        run: yarn workspace nba-web build
 
       - name: Build UI Package
         run: yarn workspace @nba-design/ui build
