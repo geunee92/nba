@@ -2,13 +2,13 @@ import React from "react";
 import { ChipProps } from "./Chip.types";
 import { ChipContainer } from "./Chip.styles";
 
-export const Chip = ({
+export function Chip({
   label,
   selected,
   onClick,
   onDelete,
   size = "md",
-}: ChipProps) => {
+}: ChipProps) {
   return (
     <ChipContainer selected={selected} size={size} onClick={onClick}>
       <span>{label}</span>
@@ -25,4 +25,4 @@ export const Chip = ({
       )}
     </ChipContainer>
   );
-};
+}

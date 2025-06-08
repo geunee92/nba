@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { ModalProps } from "./Modal.types";
 import { Backdrop, ModalContent, CloseButton } from "./Modal.styles";
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export function Modal({ isOpen, onClose, children }: ModalProps) {
   // ESC 키 닫기 처리
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -28,4 +28,4 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       </ModalContent>
     </Backdrop>
   );
-};
+}

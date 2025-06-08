@@ -1,15 +1,15 @@
 import { StyledButton } from "./Button.style";
 import { ButtonProps } from "./Button.types";
 
-export const Button = ({
+export function Button({
   children,
   variant = "primary",
   size = "md",
   ...props
-}: ButtonProps) => {
+}: ButtonProps) {
   return (
-    <StyledButton variant={variant} size={size}>
+    <StyledButton variant={variant} size={size} {...props}>
       {children}
     </StyledButton>
   );
-};
+}

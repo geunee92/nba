@@ -12,3 +12,4 @@ export * from "./components/Grid";
 export * from "./components/Badge";
 export * from "./components/Chip";
 export * from "./components/Modal";
+export * from "./components/Toast";
