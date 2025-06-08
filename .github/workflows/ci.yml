@@ -1,0 +1,36 @@
+name: CI - Full Monorepo
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Lint all packages
+        run: yarn lint
+
+      - name: Type check all packages
+        run: yarn tsc --noEmit
+
+      - name: Build NBA Web
+        run: yarn workspace @nba-web build
+
+      - name: Build UI Package
+        run: yarn workspace @nba-design/ui build
