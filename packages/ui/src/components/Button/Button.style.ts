@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { ButtonProps, ButtonSize, ButtonVariant } from "./Button.types";
+import { ButtonProps } from "./Button.types";
 
 const sizeStyles = {
   sm: css`

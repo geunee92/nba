@@ -1,4 +1,4 @@
-import { breakpoints } from '../tokens/breakpoints';
+import { breakpoints } from "../tokens/breakpoints";
 
 export const media = {
   sm: `@media (min-width: ${breakpoints.sm})`,

@@ -1,8 +1,10 @@
 {
   "name": "nba-monorepo",
   "packageManager": "yarn@4.9.2",
+  "type": "module",
   "scripts": {
-    "lint": "yarn workspace @nba-design/ui lint && yarn workspace nba-web lint && yarn workspace storybook lint"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "workspaces": [
     "packages/*",
@@ -16,6 +18,7 @@
     "eslint-plugin-prettier": "^5.4.1",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "prettier": "^3.5.3",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3"

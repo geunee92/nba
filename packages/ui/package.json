@@ -8,8 +8,7 @@
   },
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "lint": "eslint 'src/**/*.{ts,tsx}'"
+    "build": "tsc"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

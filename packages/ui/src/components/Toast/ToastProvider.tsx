@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { createContext, useContext, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { ToastContextType, ToastData, ToastType } from "./Toast.types";
 import { ToastWrapper } from "./Toast.styles";

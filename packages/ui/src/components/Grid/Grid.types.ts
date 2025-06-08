@@ -1,3 +1,4 @@
+import React from "react";
 import { spacing } from "../../tokens";
 
 export interface GridProps {

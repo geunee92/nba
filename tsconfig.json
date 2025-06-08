@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/ui" },
+    { "path": "./services/nba" },
+    { "path": "./services/storybook" }
+  ]
+}

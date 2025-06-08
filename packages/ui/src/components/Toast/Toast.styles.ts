@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { colors, spacing, typography } from "../../tokens";
+import { spacing, typography } from "../../tokens";
 import { ToastType } from "./Toast.types";
 
 export const ToastWrapper = styled.div`
