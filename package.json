@@ -1,6 +1,9 @@
 {
   "name": "nba-monorepo",
   "packageManager": "yarn@4.9.2",
+  "scripts": {
+    "lint": "yarn workspace @nba-design/ui lint && yarn workspace nba-web lint && yarn workspace storybook lint"
+  },
   "workspaces": [
     "packages/*",
     "services/*"
