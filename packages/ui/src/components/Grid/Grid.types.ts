@@ -1,9 +1,7 @@
-import { HTMLAttributes, ReactNode } from "react";
+import { spacing } from "../../tokens";
 
-export interface GridProps extends HTMLAttributes<HTMLDivElement> {
-  columns?: number | string;
-  gap?: string;
-  rowGap?: string;
-  columnGap?: string;
-  children: ReactNode;
+export interface GridProps {
+  columns?: number | number[];
+  gap?: keyof typeof spacing;
+  children: React.ReactNode;
 }

@@ -1,23 +1,9 @@
-import React from "react";
-import { GridProps } from "./Grid.types";
 import { StyledGrid } from "./Grid.styles";
+import { GridProps } from "./Grid.types";
 
-export function Grid({
-  columns = 2,
-  gap,
-  rowGap,
-  columnGap,
-  children,
-  ...props
-}: GridProps) {
+export function Grid({ columns, gap = "md", children }: GridProps) {
   return (
-    <StyledGrid
-      columns={columns}
-      gap={gap}
-      rowGap={rowGap}
-      columnGap={columnGap}
-      {...props}
-    >
+    <StyledGrid columns={columns} gap={gap}>
       {children}
     </StyledGrid>
   );
