@@ -1010,7 +1010,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nba-design/ui@workspace:packages/ui":
+"@nba-design/ui@workspace:^, @nba-design/ui@workspace:packages/ui":
   version: 0.0.0-use.local
   resolution: "@nba-design/ui@workspace:packages/ui"
   dependencies:
@@ -5990,6 +5990,7 @@ __metadata:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
     "@eslint/js": "npm:^9.25.0"
+    "@nba-design/ui": "workspace:^"
     "@types/react": "npm:^19.1.2"
     "@types/react-dom": "npm:^19.1.2"
     "@vitejs/plugin-react": "npm:^4.4.1"
