@@ -21,7 +21,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Run affected tests
-        run: npx turbo run test --filter=origin/main...HEAD
+        run: npx turbo run test --filter=...[origin/main]
 
       - name: Run affected builds
-        run: npx turbo run build --filter=origin/main...HEAD
+        run: npx turbo run build --filter=...[origin/main]
