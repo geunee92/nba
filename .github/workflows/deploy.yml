@@ -23,8 +23,9 @@ jobs:
           yarn install --immutable
           yarn workspace @nba-design/ui build
 
-      - name: Build & Deploy NBA Web
+      - name: Vercel Deploy
         run: |
-          cd services/nba-web
-          yarn build
-          npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
+          yarn install --immutable
+          yarn workspace @nba-design/ui build
+          yarn workspace nba-web build
+          npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes --cwd services/nba-web
