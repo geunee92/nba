@@ -1,22 +1,23 @@
+// packages/ui/components/Flex/Flex.tsx
 import React from "react";
 import { StyledFlex } from "./Flex.style";
-import { FlexProps } from "./Flex.types";
+import type { FlexProps } from "./Flex.types";
 
 export function Flex({
-  align = "stretch",
-  justify = "start",
-  direction = "row",
-  wrap = "nowrap",
+  flexDirection = "row",
+  justifyContent = "flex-start",
+  alignItems = "stretch",
+  flexWrap = "nowrap",
   gap = "0",
   children,
   ...props
 }: FlexProps) {
   return (
     <StyledFlex
-      align={align}
-      justify={justify}
-      direction={direction}
-      wrap={wrap}
+      flexDirection={flexDirection}
+      justifyContent={justifyContent}
+      alignItems={alignItems}
+      flexWrap={flexWrap}
       gap={gap}
       {...props}
     >

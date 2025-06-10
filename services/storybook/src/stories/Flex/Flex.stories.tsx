@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Flex, Card } from "@nba-design/ui";
+import { Flex } from "@nba-design/ui";
 
 const meta: Meta<typeof Flex> = {
   title: "Components/Flex",
@@ -8,17 +8,19 @@ const meta: Meta<typeof Flex> = {
 };
 
 export default meta;
+
 type Story = StoryObj<typeof Flex>;
 
 export const Default: Story = {
   args: {
     gap: "16px",
-    justify: "center",
+    justifyContent: "center",
+    alignItems: "center",
     children: (
       <>
-        <Card>1</Card>
-        <Card>2</Card>
-        <Card>3</Card>
+        <div style={{ background: "#eee", padding: "8px" }}>Box 1</div>
+        <div style={{ background: "#ccc", padding: "8px" }}>Box 2</div>
+        <div style={{ background: "#aaa", padding: "8px" }}>Box 3</div>
       </>
     ),
   },

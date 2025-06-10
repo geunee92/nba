@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "test:storybook": "yarn workspace storybook test:ci"
   },
   "workspaces": [
     "packages/*",

@@ -1,21 +1,10 @@
-import { HTMLAttributes, ReactNode } from "react";
-
-export type Align = "stretch" | "center" | "start" | "end" | "baseline";
-export type Justify =
-  | "start"
-  | "center"
-  | "end"
-  | "between"
-  | "around"
-  | "evenly";
-export type Direction = "row" | "column" | "row-reverse" | "column-reverse";
-export type Wrap = "nowrap" | "wrap" | "wrap-reverse";
+import { CSSProperties, HTMLAttributes, ReactNode } from "react";
 
 export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
-  align?: Align;
-  justify?: Justify;
-  direction?: Direction;
-  wrap?: Wrap;
+  flexDirection?: CSSProperties["flexDirection"];
+  justifyContent?: CSSProperties["justifyContent"];
+  alignItems?: CSSProperties["alignItems"];
+  flexWrap?: CSSProperties["flexWrap"];
   gap?: string;
   children: ReactNode;
 }

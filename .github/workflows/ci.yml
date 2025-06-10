@@ -2,38 +2,26 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
 
 jobs:
-  lint-and-build:
-    name: Lint and Build
+  main:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # <-- 터보 affected 비교를 위해 필수
 
       - name: Enable Corepack (Yarn Berry)
         run: corepack enable
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Run Lint
-        run: yarn lint
+      - name: Run affected tests
+        run: npx turbo run test --filter=origin/main...HEAD
 
-      - name: Build UI Package
-        run: yarn workspace @nba-design/ui build
-
-      - name: Debug UI Build
-        run: ls -al packages/ui/dist
-
-      - name: Build NBA Web
-        run: yarn workspace nba-web build
-
-      - name: Build Storybook
-        run: yarn workspace storybook build
+      - name: Run affected builds
+        run: npx turbo run build --filter=origin/main...HEAD
