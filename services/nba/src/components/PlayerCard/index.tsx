@@ -1,6 +1,6 @@
 import React from "react";
 import { Avatar, Badge, Card, Flex, Text, Heading, Chip } from "@nba-design/ui";
-import { Player } from "types/player";
+import { Player } from "../../types/player";
 
 interface PlayerCardProps {
   player: Player;

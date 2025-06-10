@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Flex, Text } from "@nba-design/ui";
 
-export function Navbar() {
+export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -35,7 +35,7 @@ export function Navbar() {
         <Text
           size="lg"
           style={{ cursor: "pointer" }}
-          onClick={() => navigate("/ranking")}
+          onClick={() => navigate("/popularLineup")}
           color="background"
         >
           랭킹

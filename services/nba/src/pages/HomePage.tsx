@@ -14,7 +14,9 @@ function HomePage() {
   return (
     <Wrapper>
       <HeroSection onStart={handleStart} />
+
       <FeatureCardGrid />
+
       <CTASection onStart={handleStart} />
     </Wrapper>
   );
