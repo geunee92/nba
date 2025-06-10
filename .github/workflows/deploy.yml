@@ -1,0 +1,30 @@
+name: Deploy to Vercel by Tag
+
+on:
+  push:
+    tags:
+      - "nba-web@*"
+      - "epl-web@*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧾 Check out the code
+        uses: actions/checkout@v4
+
+      - name: 🧪 Extract service from tag
+        id: extract
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          echo "tag=$TAG_NAME" >> $GITHUB_OUTPUT
+          echo "service=${TAG_NAME%@*}" >> $GITHUB_OUTPUT
+
+      - name: 📦 Install dependencies
+        run: yarn install --immutable
+
+      - name: 🚀 Deploy to Vercel
+        run: |
+          cd services/${{ steps.extract.outputs.service }}
+          yarn build  # 빌드 커맨드 필요 시
+          npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
