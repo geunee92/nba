@@ -1,30 +1,30 @@
-name: Deploy to Vercel by Tag
+name: Deploy NBA App (Tag Based)
 
 on:
   push:
     tags:
       - "nba-web@*"
-      - "epl-web@*"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: 🧾 Check out the code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 🧪 Extract service from tag
-        id: extract
-        run: |
-          TAG_NAME=${GITHUB_REF#refs/tags/}
-          echo "tag=$TAG_NAME" >> $GITHUB_OUTPUT
-          echo "service=${TAG_NAME%@*}" >> $GITHUB_OUTPUT
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: 📦 Install root dependencies
-        run: yarn install --immutable
-
-      - name: 🚀 Build & Deploy
+      - name: Install dependencies & build UI
         run: |
-          cd services/${{ steps.extract.outputs.service }}
+          yarn install --immutable
+          yarn workspace @nba-design/ui build
+
+      - name: Build & Deploy NBA Web
+        run: |
+          cd services/nba-web
           yarn build
           npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
