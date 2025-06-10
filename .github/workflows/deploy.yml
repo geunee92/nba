@@ -20,11 +20,11 @@ jobs:
           echo "tag=$TAG_NAME" >> $GITHUB_OUTPUT
           echo "service=${TAG_NAME%@*}" >> $GITHUB_OUTPUT
 
-      - name: 📦 Install dependencies
+      - name: 📦 Install root dependencies
         run: yarn install --immutable
 
-      - name: 🚀 Deploy to Vercel
+      - name: 🚀 Build & Deploy
         run: |
           cd services/${{ steps.extract.outputs.service }}
-          yarn build  # 빌드 커맨드 필요 시
+          yarn build
           npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
