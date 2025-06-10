@@ -5,4 +5,5 @@ export interface CardProps {
   shadow?: boolean;
   border?: string;
   inline?: boolean;
+  onClick?: () => void;
 }

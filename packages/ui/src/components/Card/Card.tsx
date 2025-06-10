@@ -3,7 +3,11 @@ import { CardProps } from "./Card.types";
 import { StyledCard } from "./Card.style";
 
 export function Card(props: React.PropsWithChildren<CardProps>) {
-  const { children, ...rest } = props;
+  const { children, onClick, ...rest } = props;
 
-  return <StyledCard {...rest}>{children}</StyledCard>;
+  return (
+    <StyledCard onClick={onClick} {...rest}>
+      {children}
+    </StyledCard>
+  );
 }

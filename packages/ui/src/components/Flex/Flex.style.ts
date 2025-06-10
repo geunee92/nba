@@ -5,7 +5,11 @@ export const StyledFlex = styled.div<FlexProps>`
   display: flex;
   flex-direction: ${({ flexDirection = "row" }) => flexDirection};
   justify-content: ${({ justifyContent = "flex-start" }) => justifyContent};
-  align-items: ${({ alignItems = "stretch" }) => alignItems};
-  flex-wrap: ${({ flexWrap = "nowrap" }) => flexWrap};
-  gap: ${({ gap = "0" }) => gap};
+  align-items: ${({ alignItems = "center" }) => alignItems};
+  flex-wrap: ${({ flexWrap = "wrap" }) => flexWrap};
+  gap: ${({ gap = "16px" }) => gap};
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor || "transparent"};
+  color: ${({ color }) => color || "inherit"};
+  padding: ${({ padding }) => padding};
 `;

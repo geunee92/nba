@@ -6,7 +6,7 @@ interface CTASectionProps {
 
 export function CTASection({ onStart }: CTASectionProps) {
   return (
-    <Flex justify="center">
+    <Flex justifyContent="center">
       <Button size="lg" onClick={onStart}>
         지금 바로 시작
       </Button>

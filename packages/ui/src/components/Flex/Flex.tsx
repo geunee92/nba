@@ -4,6 +4,7 @@ import { StyledFlex } from "./Flex.style";
 import type { FlexProps } from "./Flex.types";
 
 export function Flex({
+  as,
   flexDirection = "row",
   justifyContent = "flex-start",
   alignItems = "stretch",
@@ -14,6 +15,7 @@ export function Flex({
 }: FlexProps) {
   return (
     <StyledFlex
+      as={as}
       flexDirection={flexDirection}
       justifyContent={justifyContent}
       alignItems={alignItems}
