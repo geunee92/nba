@@ -1,31 +1,42 @@
-*.DS_Store
+# macOS 시스템 파일
+.DS_Store
+
+# 로그, 빌드 정보
 *.log
 *.tsbuildinfo
 
-.pnp.*
-.yarn/install-state.gz
+# Yarn Berry Zero-Install 필수 제외 (Git에 포함되어야 하므로 제외하지 않음)
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-**/package-lock.json
+!.yarn/cache
+!.yarnrc.yml
+!.yarn/install-state.gz
+
+# node_modules는 포함하지 않음
 **/node_modules/
 
-**/dist/*
+# npm lockfile 제외 (Yarn 사용 중)
+**/package-lock.json
+
+# 빌드 아웃풋
+**/dist/
 dist
-*storybook.log
+**/build/
 
-# storybook
-**/storybook-static/
-
-# next.js
+# Next.js 관련
 **/.next/
 **/out/
 
-# production
-**/build
+# Storybook 관련
+**/storybook-static/
+*storybook.log
 
-
+# 환경변수
 .env
 **/.env
+
+# vercel 관련
+.vercel
