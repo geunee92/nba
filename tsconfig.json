@@ -2,7 +2,7 @@
   "files": [],
   "references": [
     { "path": "./packages/ui" },
-    { "path": "./services/nba" },
+    { "path": "./services/nba-web" },
     { "path": "./services/storybook" }
   ]
 }
