@@ -18,14 +18,16 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies & build UI
-        run: |
-          yarn install --immutable
-          yarn workspace @nba-design/ui build
+      - name: 📦 Install dependencies
+        run: yarn install --immutable
 
-      - name: Vercel Deploy
+      - name: 🔨 Build UI
+        run: yarn workspace @nba-design/ui build
+
+      - name: 🔨 Build NBA Web
+        run: yarn workspace nba-web build
+
+      - name: 🚀 Deploy with Vercel
         run: |
-          yarn install --immutable
-          yarn workspace @nba-design/ui build
-          yarn workspace nba-web build
-          npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes --cwd services/nba-web
+          npx vercel link --cwd services/nba-web --token=$VERCEL_TOKEN --yes
+          npx vercel deploy --cwd services/nba-web --prod --token=$VERCEL_TOKEN --yes
