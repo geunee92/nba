@@ -1,13 +1,13 @@
 import { Button, Flex } from "@nba-design/ui";
 
 interface CTASectionProps {
-  onStart: () => void;
+  onClick: () => void;
 }
 
-export function CTASection({ onStart }: CTASectionProps) {
+export function CTASection({ onClick }: CTASectionProps) {
   return (
     <Flex justifyContent="center">
-      <Button size="lg" onClick={onStart}>
+      <Button size="lg" onClick={onClick}>
         지금 바로 시작
       </Button>
     </Flex>

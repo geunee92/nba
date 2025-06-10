@@ -2,17 +2,17 @@ import { Button, Heading, Text } from "@nba-design/ui";
 import Styled from "./index.styles";
 
 interface HeroSectionProps {
-  onStart: () => void;
+  onClick: () => void;
 }
 
-export function HeroSection({ onStart }: HeroSectionProps) {
+export function HeroSection({ onClick }: HeroSectionProps) {
   return (
     <Styled.Wrapper>
       <Heading size="lg">NBA 최고의 라인업을 만들어보세요</Heading>
 
       <Text size="lg">15달러로 나만의 드림팀을 구성해보세요.</Text>
 
-      <Button onClick={onStart}>라인업 시작하기</Button>
+      <Button onClick={onClick}>랭킹 보기</Button>
     </Styled.Wrapper>
   );
 }
