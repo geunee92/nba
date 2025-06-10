@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { Button, Flex, Modal } from "@nba-design/ui";
 import { Player } from "../../types/player";
 import { updateLineup } from "../../remote/saveLineup";
+import useShare from "src/hooks/useShare";
 interface SubmitButtonProps {
   selectedPlayers: Player[];
 }
 
 export function SubmitButton({ selectedPlayers }: SubmitButtonProps) {
+  const share = useShare();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
@@ -30,7 +33,7 @@ export function SubmitButton({ selectedPlayers }: SubmitButtonProps) {
   };
 
   return (
-    <Flex justifyContent="center">
+    <>
       <Button
         variant="primary"
         size="lg"
@@ -41,8 +44,29 @@ export function SubmitButton({ selectedPlayers }: SubmitButtonProps) {
       </Button>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <p>{modalMessage}</p>
+        <Flex flexDirection="column" alignItems="center" gap={"8px"}>
+          <p>{modalMessage}</p>
+
+          <Button
+            variant="background"
+            size="sm"
+            onClick={() =>
+              share({
+                title: "나만의 NBA 라인업",
+                description: "15달러로 최고의 5인을 선택해보세요!",
+                imageUrl:
+                  selectedPlayers[0]?.imageUrl ?? "/default-thumbnail.png",
+              })
+            }
+          >
+            <img
+              width={32}
+              src="https://cdn1.iconfinder.com/data/icons/rounded-social-media/512/kakao-64.png"
+              alt="카카오톡"
+            />
+          </Button>
+        </Flex>
       </Modal>
-    </Flex>
+    </>
   );
 }

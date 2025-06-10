@@ -3,9 +3,11 @@ import HomePage from "./pages/HomePage";
 import LineupPage from "./pages/LineupPage";
 import Navbar from "../src/components/Navbar";
 import PopularLineupList from "./pages/PopularLineupList";
-// import NotFound from './pages/NotFound'; // 필요 시
+import useLoadKakao from "./hooks/useLoadKakao";
 
 function App() {
+  useLoadKakao();
+
   return (
     <BrowserRouter>
       <Navbar />
@@ -15,8 +17,6 @@ function App() {
         <Route path="/lineup" element={<LineupPage />} />
 
         <Route path="/PopularLineup" element={<PopularLineupList />} />
-
-        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </BrowserRouter>
   );

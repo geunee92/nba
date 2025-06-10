@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { ButtonProps } from "./Button.types";
+import { colors } from "../../tokens/colors";
 
 const sizeStyles = {
   sm: css`
@@ -20,6 +21,33 @@ const sizeStyles = {
   `,
 } as const;
 
+const variantStyles = {
+  primary: css`
+    background-color: ${colors.primary};
+    color: #fff;
+
+    &:hover {
+      background-color: #163571;
+    }
+  `,
+  secondary: css`
+    background-color: ${colors.secondary};
+    color: #fff;
+
+    &:hover {
+      background-color: #a60d24;
+    }
+  `,
+  background: css`
+    background-color: ${colors.background};
+    color: ${colors.text};
+
+    &:hover {
+      background-color: #bdbdbd;
+    }
+  `,
+};
+
 export const StyledButton = styled.button<ButtonProps>`
   border: none;
   cursor: pointer;
@@ -28,14 +56,5 @@ export const StyledButton = styled.button<ButtonProps>`
 
   ${({ size }) => (size ? sizeStyles[size] : sizeStyles.md)}
 
-  ${({ variant }) =>
-    variant === "primary"
-      ? css`
-          background-color: #007aff;
-          color: white;
-        `
-      : css`
-          background-color: #e0e0e0;
-          color: #333;
-        `}
+  ${({ variant }) => (variant ? variantStyles[variant] : variantStyles.primary)}
 `;
