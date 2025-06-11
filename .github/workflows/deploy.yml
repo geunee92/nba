@@ -25,18 +25,17 @@ jobs:
           TAG=${GITHUB_REF#refs/tags/}
           echo "service=${TAG%@*}" >> $GITHUB_OUTPUT
 
-      - name: Install & build
+      - name: Install & build workspaces
         run: |
           yarn install --immutable
           yarn workspace @nba-design/ui build
           yarn workspace ${{ steps.extract.outputs.service }} build
 
       - name: Deploy to Vercel
-        run: |
-          # (혹시 서비스 폴더에 남아있는 .vercel 초기화)
-          rm -rf services/${{ steps.extract.outputs.service }}/.vercel
-
-          # 루트에 있는 .vercel/project.json 을 그대로 사용
-          npx vercel deploy services/${{ steps.extract.outputs.service }} \
-            --prod --yes \
-            --token=${{ secrets.VERCEL_TOKEN }}
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: services/${{ steps.extract.outputs.service }}
+          prod: true
