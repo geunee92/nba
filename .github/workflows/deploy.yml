@@ -14,18 +14,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.15.0 # 로컬 Node 버전과 맞추세요
+          node-version: 22.15.0
 
-      - name: Extract service name
+      - name: Extract service name from tag
         id: extract
         run: |
           TAG=${GITHUB_REF#refs/tags/}
           echo "service=${TAG%@*}" >> $GITHUB_OUTPUT
 
-      - name: Install & build workspaces
+      - name: Install & build
         run: |
           yarn install --immutable
           yarn workspace @nba-design/ui build
@@ -37,5 +37,4 @@ jobs:
             --cwd services/${{ steps.extract.outputs.service }} \
             --prod \
             --yes \
-            --token=${{ secrets.VERCEL_TOKEN }} \
-            --project ${{ secrets.VERCEL_PROJECT_ID }}
+            --token=${{ secrets.VERCEL_TOKEN }}
