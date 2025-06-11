@@ -7,17 +7,21 @@ import styled from "@emotion/styled";
 function HomePage() {
   const navigate = useNavigate();
 
-  function handleStart() {
+  function handleLineupPageMove() {
     navigate("/lineup");
+  }
+
+  function handlePopularLineupPageMove() {
+    navigate("/popularLineup");
   }
 
   return (
     <Wrapper>
-      <HeroSection onStart={handleStart} />
+      <HeroSection onClick={handleLineupPageMove} />
 
       <FeatureCardGrid />
 
-      <CTASection onStart={handleStart} />
+      <CTASection onClick={handlePopularLineupPageMove} />
     </Wrapper>
   );
 }
