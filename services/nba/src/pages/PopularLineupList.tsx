@@ -16,20 +16,22 @@ export default function PopularLineupList() {
   }, []);
 
   return (
-    <Grid columns={[1, 2, 3]} gap="lg">
-      {topLineups.map(({ count, players }, i) => (
-        <Card key={i} padding="md" shadow radius="lg">
-          <Text weight="bold">
-            🔥 {i + 1}위 ({count}회 선택)
-          </Text>
+    <Flex justifyContent="center">
+      <Grid columns={[1, 2, 3]} gap="lg">
+        {topLineups.map(({ count, players }, i) => (
+          <Card key={i} padding="md" shadow radius="lg">
+            <Text weight="bold">
+              🔥 {i + 1}위 ({count}회 선택)
+            </Text>
 
-          <Flex flexWrap="wrap" gap="sm">
-            {players.map((p) => (
-              <PlayerCard key={p.id} player={p} isSelected />
-            ))}
-          </Flex>
-        </Card>
-      ))}
-    </Grid>
+            <Flex flexWrap="wrap" gap="sm">
+              {players.map((p) => (
+                <PlayerCard key={p.id} player={p} isSelected />
+              ))}
+            </Flex>
+          </Card>
+        ))}
+      </Grid>
+    </Flex>
   );
 }

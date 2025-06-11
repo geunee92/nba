@@ -8,7 +8,7 @@ export function CTASection({ onClick }: CTASectionProps) {
   return (
     <Flex justifyContent="center">
       <Button size="lg" onClick={onClick}>
-        라이언 랭킹 보기
+        라인업 랭킹 보기
       </Button>
     </Flex>
   );
