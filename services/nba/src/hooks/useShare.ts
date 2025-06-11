@@ -15,6 +15,8 @@ function useShare() {
       imageUrl,
       buttonLabel = "나도 만들기",
     }: ShareProps) => {
+      const shareUrl = "https://nba-blush.vercel.app";
+
       if (!window.Kakao || !window.Kakao.isInitialized()) {
         console.warn("Kakao SDK가 초기화되지 않았습니다.");
         return;
@@ -27,16 +29,16 @@ function useShare() {
           description,
           imageUrl,
           link: {
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href,
+            mobileWebUrl: shareUrl,
+            webUrl: shareUrl,
           },
         },
         buttons: [
           {
             title: buttonLabel,
             link: {
-              mobileWebUrl: window.location.href,
-              webUrl: window.location.href,
+              mobileWebUrl: shareUrl,
+              webUrl: shareUrl,
             },
           },
         ],
