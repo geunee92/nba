@@ -33,8 +33,10 @@ jobs:
 
       - name: Deploy to Vercel
         run: |
-          npx vercel deploy \
-            --cwd services/${{ steps.extract.outputs.service }} \
-            --prod \
-            --yes \
+          # (혹시 서비스 폴더에 남아있는 .vercel 초기화)
+          rm -rf services/${{ steps.extract.outputs.service }}/.vercel
+
+          # 루트에 있는 .vercel/project.json 을 그대로 사용
+          npx vercel deploy services/${{ steps.extract.outputs.service }} \
+            --prod --yes \
             --token=${{ secrets.VERCEL_TOKEN }}
