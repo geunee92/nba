@@ -1,4 +1,4 @@
-name: Tag Based Vercel Deploy
+name: Tag-Based Vercel Deploy
 
 on:
   push:
@@ -11,21 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.15.0
+          node-version: 22.15.0 # 로컬 Node 버전과 맞추세요
 
-      - name: Extract service name from tag
+      - name: Extract service name
         id: extract
         run: |
           TAG=${GITHUB_REF#refs/tags/}
           echo "service=${TAG%@*}" >> $GITHUB_OUTPUT
 
-      - name: Install and build all
+      - name: Install & build workspaces
         run: |
           yarn install --immutable
           yarn workspace @nba-design/ui build
@@ -37,4 +37,5 @@ jobs:
             --cwd services/${{ steps.extract.outputs.service }} \
             --prod \
             --yes \
-            --token=${{ secrets.VERCEL_TOKEN }}
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --project ${{ secrets.VERCEL_PROJECT_ID }}

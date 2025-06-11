@@ -1,17 +1,13 @@
-import inquirer from "inquirer";
+#!/usr/bin/env node
+
 import { execSync } from "child_process";
+import inquirer from "inquirer";
 import semver from "semver";
 
 function getLatestTag(service) {
-  try {
-    const tags = execSync(`git tag --sort=-v:refname`)
-      .toString()
-      .split("\n")
-      .filter((tag) => tag.startsWith(`${service}@`));
-    return tags[0] || `${service}@0.0.0`;
-  } catch {
-    return `${service}@0.0.0`;
-  }
+  const all = execSync("git tag --sort=-v:refname").toString().split("\n");
+  const filtered = all.filter((t) => t.startsWith(`${service}@`));
+  return filtered[0] || `${service}@0.0.0`;
 }
 
 (async () => {
@@ -23,42 +19,31 @@ function getLatestTag(service) {
   });
 
   const latestTag = getLatestTag(service);
-  const currentVersion = latestTag.split("@")[1];
-
+  const currentVer = latestTag.split("@")[1];
   const { bump } = await inquirer.prompt({
     type: "list",
     name: "bump",
-    message: `현재 버전: ${currentVersion}, 어떤 버전으로 올릴까요?`,
+    message: `현재 태그: ${latestTag} → bump 종류를 선택하세요`,
     choices: ["patch", "minor", "major"],
   });
 
-  const nextVersion = semver.inc(currentVersion, bump);
-  const nextTag = `${service}@${nextVersion}`;
+  const nextVer = semver.inc(currentVer, bump);
+  const nextTag = `${service}@${nextVer}`;
 
-  // 중복 태그 방지
-  const existingTags = execSync(`git tag`).toString();
-  if (existingTags.includes(nextTag)) {
-    console.error(`❌ 이미 존재하는 태그입니다: ${nextTag}`);
+  if (execSync("git tag").toString().includes(nextTag)) {
+    console.error(`❌ 태그 중복: ${nextTag} 이미 존재합니다.`);
     process.exit(1);
   }
 
-  const { confirm } = await inquirer.prompt({
+  const { ok } = await inquirer.prompt({
     type: "confirm",
-    name: "confirm",
-    message: `태그 ${nextTag}로 배포를 진행할까요?`,
+    name: "ok",
+    message: `태그 ${nextTag} 생성 & 푸시할까요?`,
   });
-
-  if (!confirm) return;
+  if (!ok) process.exit(0);
 
   execSync(`git tag ${nextTag}`);
   execSync(`git push origin ${nextTag}`);
 
-  console.log(`✅ 태그 ${nextTag} 생성 및 푸시 완료`);
-
-  // Vercel 배포
-  console.log("🚀 Vercel 배포 중...");
-  execSync(
-    `npx vercel deploy --cwd services/${service} --prod --yes --token=${process.env.VERCEL_TOKEN}`,
-    { stdio: "inherit" },
-  );
+  console.log(`✅ ${nextTag} 태그 생성 및 푸시 완료`);
 })();
