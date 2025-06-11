@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -25,7 +25,7 @@ jobs:
           TAG=${GITHUB_REF#refs/tags/}
           echo "service=${TAG%@*}" >> $GITHUB_OUTPUT
 
-      - name: Install & build workspaces
+      - name: Install & build all workspaces
         run: |
           yarn install --immutable
           yarn workspace @nba-design/ui build
@@ -38,4 +38,4 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           working-directory: services/${{ steps.extract.outputs.service }}
-          prod: true
+          vercel-args: "--prod --prebuilt"
