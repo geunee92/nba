@@ -40,3 +40,4 @@ dist
 
 # vercel 관련
 .vercel
+vercel.json
