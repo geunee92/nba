@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22.15.0
@@ -23,10 +23,9 @@ jobs:
         id: extract
         run: |
           TAG=${GITHUB_REF#refs/tags/}
-          echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "service=${TAG%@*}" >> $GITHUB_OUTPUT
 
-      - name: Install and Build
+      - name: Install and build all
         run: |
           yarn install --immutable
           yarn workspace @nba-design/ui build
@@ -36,5 +35,6 @@ jobs:
         run: |
           npx vercel deploy \
             --cwd services/${{ steps.extract.outputs.service }} \
-            --prod --yes \
+            --prod \
+            --yes \
             --token=${{ secrets.VERCEL_TOKEN }}
