@@ -19,7 +19,7 @@ function getLatestTag(service) {
     type: "list",
     name: "service",
     message: "어떤 서비스를 배포할까요?",
-    choices: ["nba-web"],
+    choices: ["nba-web", "epl-web"],
   });
 
   const latestTag = getLatestTag(service);
@@ -35,6 +35,13 @@ function getLatestTag(service) {
   const nextVersion = semver.inc(currentVersion, bump);
   const nextTag = `${service}@${nextVersion}`;
 
+  // 중복 태그 방지
+  const existingTags = execSync(`git tag`).toString();
+  if (existingTags.includes(nextTag)) {
+    console.error(`❌ 이미 존재하는 태그입니다: ${nextTag}`);
+    process.exit(1);
+  }
+
   const { confirm } = await inquirer.prompt({
     type: "confirm",
     name: "confirm",
@@ -47,4 +54,11 @@ function getLatestTag(service) {
   execSync(`git push origin ${nextTag}`);
 
   console.log(`✅ 태그 ${nextTag} 생성 및 푸시 완료`);
+
+  // Vercel 배포
+  console.log("🚀 Vercel 배포 중...");
+  execSync(
+    `npx vercel deploy --cwd services/${service} --prod --yes --token=${process.env.VERCEL_TOKEN}`,
+    { stdio: "inherit" },
+  );
 })();
